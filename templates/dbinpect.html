@@ -1,0 +1,72 @@
+<html>
+<head>
+<title>dbinspect</title>
+
+<style type="text/css">
+    body{
+        line-height: 23px;
+        font-family: 'Courier New', Courier, sans-serif;
+    }
+    #content{
+        width: 960px;
+        margin: 1em auto;
+        padding: 1em;
+        font-size: 14px;
+        box-shadow: 0 0 4px #06c;
+    }
+    table{
+        font-size: 14px;
+        border-collapse: collapse;
+    }
+    h1{
+        font-size: 18px;
+        margin: 0 0 1em;
+        text-align: center;
+    }
+    table tr{
+        margin: 0;
+        border: none;
+    }
+    table th{
+        background-color: #eee;
+        border: 1px solid #06c;
+    }
+    tr.even td{
+        background-color: #eee;
+    }
+    table td,
+    table th{
+        margin: 0;
+        padding: 4px 10px;
+        border: 1px solid #e1e1e1;
+    }
+    p.note{
+        color: red;
+    }
+</style>
+</head>
+<body>
+<div id="content">
+<h1>dbinspect results</h1>
+<table>
+    <tr>
+        <th width="100">App</th>
+        <th width="100">Model</th>
+        <th width="100">Column</th>
+        <th width="600">Error</th>
+    </tr>
+{% for error in errors %}
+<tr class="{% cycle "odd" "even" %}">
+    <td> {{ error.app_label }} </td>
+    <td> {{ error.model_name }} </td>
+    <td> {{ error.attr_name }} </td>
+    <td> {{ error.error }} </td>
+</tr>
+{% endfor %}
+</table>
+<p class="note">
+Note: db_index don't create indexs with "syncdb" command
+</p>
+</div>
+</body>
+</html>

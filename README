@@ -1,0 +1,34 @@
+====================
+dbinspect
+====================
+
+dbinspect is a django app to inspect your mysql database schemas and compare them to all models in your project to find the differences.
+
+It's helpful when you have done a lot of migrations and what to find the difference between current database schema and your models.
+
+Tt checks and show an error message to these conditions:
+
+* You defined a index field but no index created in database.
+
+* Your database has indexes which not defined in your models.
+
+* You delete a field in models but not delete it in database.
+
+* Some fields were defined unique but no unique rule in database.
+
+
+INSTALL
+====================
+
+1. add 'dbinspect' to your project's settings::
+
+    INSTALLED_APPS = (
+        ...
+        'dbinspect',
+    )
+
+2. add url routes to you urls.py::
+
+    (r'^inspect$', 'dbinspect.views.inspect')
+
+3. visite http://your.site.com/inspect
